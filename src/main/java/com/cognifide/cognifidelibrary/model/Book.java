@@ -1,7 +1,10 @@
 package com.cognifide.cognifidelibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,12 +12,15 @@ import javax.persistence.Id;
 import java.sql.Date;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Book {
 
     @Id
     private String isbn;
+    @JsonIgnore()
     private String title;
     private String subtitle;
     private String publisher;
@@ -28,7 +34,4 @@ public class Book {
     private Double averageRating;
     private String[] authors;
     private String[] categories;
-
-    public Book() {
-    }
 }
