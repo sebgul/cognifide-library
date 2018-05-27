@@ -28,7 +28,8 @@ public class CognifideLibraryApplication {
             mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             TypeReference<List<Book>> typeReference = new TypeReference<List<Book>>() {
             };
-            InputStream inputStream = TypeReference.class.getResourceAsStream("/data/books_example.json");
+            // first argument to maven task is the JSON file with data
+            InputStream inputStream = TypeReference.class.getResourceAsStream(args[0]);
             try {
                 List<Book> books = mapper.readValue(inputStream, typeReference);
                 bookService.save(books);
