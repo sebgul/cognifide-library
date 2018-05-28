@@ -26,4 +26,13 @@ public class Book {
 
     @Embedded
     private VolumeInfo volumeInfo;
+
+    @Embedded
+    private SaleInfo saleInfo;
+
+    @Embedded
+    private AccessInfo accessInfo;
+
+    @Embedded
+    private SearchInfo searchInfo;
 }
