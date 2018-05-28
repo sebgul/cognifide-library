@@ -1,5 +1,6 @@
 package com.cognifide.cognifidelibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +15,7 @@ import javax.persistence.Embedded;
 @AllArgsConstructor
 @Embeddable
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties({"country", "viewability", "embeddable", "publicDomain", "textToSpeechPermission", "epub", "pdf", "webReaderLink", "accessViewStatus", "quoteSharingAllowed"})
 class AccessInfo {
 
     @Column(name = "accessInfo_country")

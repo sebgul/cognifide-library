@@ -1,5 +1,6 @@
 package com.cognifide.cognifidelibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +15,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Embeddable
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties({"amount", "amountInMicros", "currencyCode"})
 class RetailPrice implements Serializable {
 
     @Column(name = "rp_amount")

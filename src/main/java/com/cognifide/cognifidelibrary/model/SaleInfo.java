@@ -1,5 +1,6 @@
 package com.cognifide.cognifidelibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @Embeddable
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties({"country", "saleability", "isEbook", "buyLink", "offers"})
 class SaleInfo {
 
     @Column(name = "saleInfo_country")

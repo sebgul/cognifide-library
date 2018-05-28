@@ -1,5 +1,6 @@
 package com.cognifide.cognifidelibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @Embeddable
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties({"printType", "ratingsCount", "maturityRating", "allowAnonLogging", "contentVersion", "infoLink", "canonicalVolumeLink"})
 class VolumeInfo {
 
     private String title;
