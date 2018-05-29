@@ -24,7 +24,7 @@ public class BookController {
     }
 
     @GetMapping("/book/{isbn}")
-    public Book getByIsbn(@PathVariable("isbn") String isbn) {
+    public BookRecord getByIsbn(@PathVariable("isbn") String isbn) {
         return bookService.getByIsbn(isbn);
     }
 
