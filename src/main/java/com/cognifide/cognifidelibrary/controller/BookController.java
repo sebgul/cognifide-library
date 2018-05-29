@@ -30,13 +30,19 @@ public class BookController {
 
         if (bookRecord != null) {
             return new ResponseEntity<>(bookRecord, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/category/{categoryName}/books")
-    public Iterable<BookRecord> getByCategory(@PathVariable("categoryName") String categoryName) {
-        return bookService.getByCategory(categoryName);
+    public ResponseEntity<Iterable<BookRecord>> getByCategory(@PathVariable("categoryName") String categoryName) {
+        Iterable<BookRecord> bookRecords = bookService.getByCategory(categoryName);
+
+        if (bookRecords != null) {
+            return new ResponseEntity<>(bookRecords, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
