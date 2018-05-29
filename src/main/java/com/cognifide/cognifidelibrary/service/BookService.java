@@ -54,6 +54,27 @@ public class BookService {
     }
 
     public Iterable<BookRecord> getByCategory(String category) {
-        return null;
+        List<Book> books = bookRepository.findAll();
+        List<BookRecord> bookRecords = new ArrayList<>();
+
+        for (Book book : books) {
+            List<String> categories = null;
+
+            if (book.getVolumeInfo().getCategories() != null) {
+                categories = new ArrayList<>(book.getVolumeInfo().getCategories());
+            }
+
+            if (categories != null) {
+                for (int i = 0; i < categories.size(); i++) {
+                    categories.set(i, categories.get(i).toLowerCase());
+                }
+
+                if (categories.contains(category.toLowerCase())) {
+                    bookRecords.add(BookUtils.createBookRecord(book));
+                }
+            }
+        }
+
+        return bookRecords;
     }
 }
