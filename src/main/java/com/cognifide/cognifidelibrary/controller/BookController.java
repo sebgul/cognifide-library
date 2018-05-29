@@ -1,8 +1,9 @@
 package com.cognifide.cognifidelibrary.controller;
 
-import com.cognifide.cognifidelibrary.model.Book;
 import com.cognifide.cognifidelibrary.model.BookRecord;
 import com.cognifide.cognifidelibrary.service.BookService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,12 +25,18 @@ public class BookController {
     }
 
     @GetMapping("/book/{isbn}")
-    public BookRecord getByIsbn(@PathVariable("isbn") String isbn) {
-        return bookService.getByIsbn(isbn);
+    public ResponseEntity<BookRecord> getByIsbn(@PathVariable("isbn") String isbn) {
+        BookRecord bookRecord = bookService.getByIsbn(isbn);
+
+        if (bookRecord != null) {
+            return new ResponseEntity<>(bookRecord, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/category/{categoryName}/books")
-    public Iterable<Book> getByCategory(@PathVariable("categoryName") String categoryName) {
+    public Iterable<BookRecord> getByCategory(@PathVariable("categoryName") String categoryName) {
         return bookService.getByCategory(categoryName);
     }
 }

@@ -53,8 +53,7 @@ public class BookService {
         return null;
     }
 
-    public Iterable<Book> getByCategory(String category) {
-
+    public Iterable<BookRecord> getByCategory(String category) {
         return null;
     }
 }
