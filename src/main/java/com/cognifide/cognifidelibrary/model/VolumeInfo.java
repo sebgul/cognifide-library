@@ -18,7 +18,7 @@ import java.util.ArrayList;
 @Embeddable
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties({"printType", "ratingsCount", "maturityRating", "allowAnonLogging", "contentVersion", "infoLink", "canonicalVolumeLink"})
-class VolumeInfo {
+public class VolumeInfo {
 
     private String title;
     private String subtitle;
@@ -34,11 +34,11 @@ class VolumeInfo {
     @Embedded
     private ReadingModes readingModes;
 
-    private int pageCount;
+    private Integer pageCount;
     private String printType;
     private ArrayList<String> categories;
     private Double averageRating;
-    private int ratingsCount;
+    private Integer ratingsCount;
     private String maturityRating;
     private boolean allowAnonLogging;
     private String contentVersion;

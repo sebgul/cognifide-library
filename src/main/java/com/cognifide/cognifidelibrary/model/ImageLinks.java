@@ -15,7 +15,7 @@ import javax.persistence.Embeddable;
 @Embeddable
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties({"smallThumbnail"})
-class ImageLinks {
+public class ImageLinks {
 
     private String smallThumbnail;
 

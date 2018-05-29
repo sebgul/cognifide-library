@@ -1,6 +1,7 @@
 package com.cognifide.cognifidelibrary.controller;
 
 import com.cognifide.cognifidelibrary.model.Book;
+import com.cognifide.cognifidelibrary.model.BookRecord;
 import com.cognifide.cognifidelibrary.service.BookService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,7 @@ public class BookController {
     }
 
     @GetMapping("/book")
-    public Iterable<Book> list() {
+    public Iterable<BookRecord> list() {
         return bookService.list();
     }
 

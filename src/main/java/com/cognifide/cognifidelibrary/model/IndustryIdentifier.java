@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-class IndustryIdentifier implements Serializable {
+public class IndustryIdentifier implements Serializable {
 
     private String type;
     private String identifier;
