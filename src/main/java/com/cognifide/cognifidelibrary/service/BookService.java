@@ -1,5 +1,6 @@
 package com.cognifide.cognifidelibrary.service;
 
+import com.cognifide.cognifidelibrary.model.AuthorRating;
 import com.cognifide.cognifidelibrary.model.Book;
 import com.cognifide.cognifidelibrary.model.BookRecord;
 import com.cognifide.cognifidelibrary.model.IndustryIdentifier;
@@ -7,8 +8,7 @@ import com.cognifide.cognifidelibrary.repository.BookRepository;
 import com.cognifide.cognifidelibrary.utils.BookUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class BookService {
@@ -76,5 +76,47 @@ public class BookService {
         }
 
         return bookRecords;
+    }
+
+    public Iterable<AuthorRating> getRatingAuthors() {
+        List<Book> books = bookRepository.findAll();
+        Map<String, List<Double>> authorRatings = new HashMap<>();
+
+        // collecting the ratings
+
+        for (Book book : books) {
+            if (book.getVolumeInfo().getAuthors() != null) {
+                for (String author : book.getVolumeInfo().getAuthors()) {
+                    if (!authorRatings.containsKey(author)) {
+                        authorRatings.put(author, new ArrayList<>());
+                    }
+
+                    if (book.getVolumeInfo().getAverageRating() != null) {
+                        authorRatings.get(author).add(book.getVolumeInfo().getAverageRating());
+                    }
+                }
+            }
+        }
+
+        List<AuthorRating> authorAvgRatings = new ArrayList<>();
+
+        // calculating the average rating for each author
+
+        for (Map.Entry<String, List<Double>> entry : authorRatings.entrySet()) {
+            List<Double> ratings = entry.getValue();
+            double average = 0.0;
+
+            if (ratings.size() > 0) {
+                average = ratings.stream().reduce(0.0, Double::sum) / ratings.size();
+            }
+
+            authorAvgRatings.add(new AuthorRating(entry.getKey(), average, ratings.size()));
+        }
+
+        // sorting the results in descending order
+
+        Collections.sort(authorAvgRatings);
+
+        return authorAvgRatings;
     }
 }

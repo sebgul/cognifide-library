@@ -1,5 +1,6 @@
 package com.cognifide.cognifidelibrary.controller;
 
+import com.cognifide.cognifidelibrary.model.AuthorRating;
 import com.cognifide.cognifidelibrary.model.BookRecord;
 import com.cognifide.cognifidelibrary.service.BookService;
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,17 @@ public class BookController {
 
         if (bookRecords != null) {
             return new ResponseEntity<>(bookRecords, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/rating")
+    public ResponseEntity<Iterable<AuthorRating>> getRatingAuthors() {
+        Iterable<AuthorRating> authorRatings = bookService.getRatingAuthors();
+
+        if (authorRatings != null) {
+            return new ResponseEntity<>(authorRatings, HttpStatus.OK);
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
