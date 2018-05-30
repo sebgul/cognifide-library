@@ -1,0 +1,11 @@
+<h3>Category selection</h3>
+<div align="center">
+  <select>
+    <p>Categories: {{categories}}</p>
+    <option value="" disabled selected>Please select a category</option>
+    <option *ngFor="let category of categories"
+            [value]="category">
+      {{category}}
+    </option>
+  </select>
+</div>

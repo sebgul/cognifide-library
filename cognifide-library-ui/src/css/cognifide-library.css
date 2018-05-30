@@ -1,0 +1,34 @@
+html {
+  height: 100%;
+}
+
+body {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-rendering: optimizeLegibility;
+  position: relative;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: normal;
+  font-size: 1.2em;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.5em;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.5em;
+}
+
+h3 {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+select {
+  font-size: 0.8em;
+}
