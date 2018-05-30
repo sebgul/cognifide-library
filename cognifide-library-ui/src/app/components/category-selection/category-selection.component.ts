@@ -38,4 +38,14 @@ export class CategorySelectionComponent implements OnInit {
       () => console.log('books loaded')
     );
   }
+
+  formatDate(datesource: String) {
+    const date = new Date(Number(datesource) * 1000);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth()).length === 1 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+    const day = String(date.getUTCDate()).length === 1 ? '0' + date.getUTCDate() : date.getUTCDate();
+
+    return year + '-' + month + '-' + day;
+  }
 }
