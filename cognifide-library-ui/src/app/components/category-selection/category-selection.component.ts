@@ -40,7 +40,7 @@ export class CategorySelectionComponent implements OnInit {
   }
 
   formatDate(datesource: String) {
-    const date = new Date(Number(datesource) * 1000);
+    const date = new Date(Number(datesource));
 
     const year = date.getFullYear();
     const month = String(date.getMonth()).length === 1 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;

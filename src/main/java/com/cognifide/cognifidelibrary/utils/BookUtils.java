@@ -3,7 +3,8 @@ package com.cognifide.cognifidelibrary.utils;
 import com.cognifide.cognifidelibrary.model.Book;
 import com.cognifide.cognifidelibrary.model.BookRecord;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class BookUtils {
 
@@ -25,19 +26,29 @@ public class BookUtils {
         // publishedDate
         if (book.getVolumeInfo().getPublishedDate() != null) {
             String[] dateElements = book.getVolumeInfo().getPublishedDate().split("-");
-            LocalDate dateMillis = null;
+            long dateMillis;
 
             if (dateElements.length == 3) {
-                dateMillis = LocalDate.of(Integer.valueOf(dateElements[0]),
+                dateMillis = LocalDateTime.of(Integer.valueOf(dateElements[0]),
                         Integer.valueOf(dateElements[1]),
-                        Integer.valueOf(dateElements[2]));
+                        Integer.valueOf(dateElements[2]), 0, 0
+                ).atZone(ZoneId.of("UTC"))
+                        .toInstant()
+                        .toEpochMilli();
             } else if (dateElements.length == 1) {
-                dateMillis = LocalDate.of(Integer.valueOf(dateElements[0]), 1, 1);
+                dateMillis = LocalDateTime.of(Integer.valueOf(dateElements[0]),
+                        1, 1, 0, 0
+                ).atZone(ZoneId.of("UTC"))
+                        .toInstant()
+                        .toEpochMilli();
             } else {
-                dateMillis = LocalDate.now();
+                dateMillis = LocalDateTime.now()
+                        .atZone(ZoneId.of("UTC"))
+                        .toInstant()
+                        .toEpochMilli();
             }
 
-            br.setPublishedDate(dateMillis.toEpochDay());
+            br.setPublishedDate(dateMillis);
         }
 
         // description
