@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
-import java.sql.Date;
 import java.util.ArrayList;
 
 @Data
@@ -24,7 +23,7 @@ public class VolumeInfo {
     private String subtitle;
     private ArrayList<String> authors;
     private String publisher;
-    private Date publishedDate;
+    private String publishedDate;
 
     @Column(length = 3000)
     private String description;
