@@ -119,4 +119,29 @@ public class BookService {
 
         return authorAvgRatings;
     }
+
+    public Iterable<String> getCategories() {
+        List<Book> books = bookRepository.findAll();
+        List<String> categoriesResult = new ArrayList<>();
+
+        for (Book book : books) {
+            List<String> categoriesBook = null;
+
+            if (book.getVolumeInfo().getCategories() != null) {
+                categoriesBook = new ArrayList<>(book.getVolumeInfo().getCategories());
+            }
+
+            if (categoriesBook != null) {
+                for (int i = 0; i < categoriesBook.size(); i++) {
+                    categoriesBook.set(i, categoriesBook.get(i).toLowerCase());
+
+                    if (!categoriesResult.contains(categoriesBook.get(i))) {
+                        categoriesResult.add(categoriesBook.get(i));
+                    }
+                }
+            }
+        }
+
+        return categoriesResult;
+    }
 }

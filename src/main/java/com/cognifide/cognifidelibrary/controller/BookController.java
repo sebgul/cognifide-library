@@ -36,6 +36,17 @@ public class BookController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/category")
+    public ResponseEntity<Iterable<String>> getCategories() {
+        Iterable<String> categories = bookService.getCategories();
+
+        if (categories != null) {
+            return new ResponseEntity<>(categories, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     @GetMapping("/category/{categoryName}/books")
     public ResponseEntity<Iterable<BookRecord>> getByCategory(@PathVariable("categoryName") String categoryName) {
         Iterable<BookRecord> bookRecords = bookService.getByCategory(categoryName);
