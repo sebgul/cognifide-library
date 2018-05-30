@@ -4,23 +4,29 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class AuthorRating {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
-    private Long id;
+public class AuthorRating implements Comparable<AuthorRating> {
 
     private String author;
-    private Double averageRating;
+    private Double avgRating;
+
+    @JsonIgnore
+    private int numOfRatings;
+
+    @Override
+    public int compareTo(AuthorRating authorRating) {
+
+        if (authorRating.avgRating > this.avgRating) {
+            return 1;
+        } else if (authorRating.avgRating < this.avgRating) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
 }

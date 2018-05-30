@@ -3,7 +3,6 @@ package com.cognifide.cognifidelibrary;
 import com.cognifide.cognifidelibrary.model.Book;
 import com.cognifide.cognifidelibrary.service.BookService;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,10 +24,11 @@ public class CognifideLibraryApplication {
     CommandLineRunner runner(BookService bookService) {
         return args -> {
             ObjectMapper mapper = new ObjectMapper();
-            mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+            //mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
             TypeReference<List<Book>> typeReference = new TypeReference<List<Book>>() {
             };
-            InputStream inputStream = TypeReference.class.getResourceAsStream("/data/books_example.json");
+            // first argument to maven task is the JSON file with data
+            InputStream inputStream = TypeReference.class.getResourceAsStream(args[0]);
             try {
                 List<Book> books = mapper.readValue(inputStream, typeReference);
                 bookService.save(books);
