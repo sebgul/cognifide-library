@@ -6,6 +6,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CategorySelectionComponent} from './components/category-selection/category-selection.component';
 import {CategoriesService} from './services/categories.service';
+import {BooksByCategoryService} from './services/books-by-category.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import {CategoriesService} from './services/categories.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [CategoriesService],
+  providers: [CategoriesService, BooksByCategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

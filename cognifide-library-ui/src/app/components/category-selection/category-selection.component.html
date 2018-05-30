@@ -1,6 +1,6 @@
 <h3>Category selection</h3>
 <div align="center">
-  <select>
+  <select (click)="getBooksByCategory($event)">
     <p>Categories: {{categories}}</p>
     <option value="" disabled selected>Please select a category</option>
     <option *ngFor="let category of categories"
@@ -8,4 +8,11 @@
       {{category}}
     </option>
   </select>
+  <ul>
+    <li *ngFor="let book of books">
+      {{book.title}}
+      {{book.rating}}
+      {{book.publishedDate}}
+    </li>
+  </ul>
 </div>

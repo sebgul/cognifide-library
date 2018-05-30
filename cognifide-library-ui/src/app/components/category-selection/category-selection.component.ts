@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoriesService} from '../../services/categories.service';
+import {BooksByCategoryService} from '../../services/books-by-category.service';
 
 @Component({
   selector: 'app-category-selection',
@@ -9,8 +10,9 @@ import {CategoriesService} from '../../services/categories.service';
 export class CategorySelectionComponent implements OnInit {
 
   public categories;
+  public books;
 
-  constructor(private categoriesService: CategoriesService) {
+  constructor(private categoriesService: CategoriesService, private booksByCategoryService: BooksByCategoryService) {
   }
 
   ngOnInit() {
@@ -24,6 +26,16 @@ export class CategorySelectionComponent implements OnInit {
       },
       err => console.error(err),
       () => console.log('categories loaded')
+    );
+  }
+
+  getBooksByCategory(event: Event) {
+    this.booksByCategoryService.getBooksByCategory((<HTMLSelectElement>(event.target)).value).subscribe(
+      data => {
+        this.books = data;
+      },
+      err => console.error(err),
+      () => console.log('books loaded')
     );
   }
 }
