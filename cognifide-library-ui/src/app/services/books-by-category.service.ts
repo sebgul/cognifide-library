@@ -10,6 +10,6 @@ export class BooksByCategoryService {
   }
 
   getBooksByCategory(category: String) {
-    return this.http.get('/server/api/category/' + category + '/books');
+    return this.http.get('/api/category/' + category + '/books');
   }
 }

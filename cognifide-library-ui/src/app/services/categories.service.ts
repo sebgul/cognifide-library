@@ -14,6 +14,6 @@ export class CategoriesService {
   }
 
   getCategories() {
-    return this.http.get('/server/api/category');
+    return this.http.get('/api/category');
   }
 }
