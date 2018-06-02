@@ -1,0 +1,14 @@
+.card {
+  width: 16rem;
+  height: 30em;
+  margin: 50px;
+  float: left;
+}
+
+.card-img-top {
+  height: 20em;
+}
+
+.card-text {
+  font-size: 0.8em;
+}

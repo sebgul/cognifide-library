@@ -9,12 +9,12 @@
     </option>
   </select>
   <div align="center">
-    <div class="card" style="width: 16rem; height: 30em; margin: 50px; float: left;" *ngFor="let book of books">
-      <img class="card-img-top" style="height: 20em;" src="{{book.thumbnailUrl}}" alt="{{book.thumbnailUrl}}">
+    <div class="card" *ngFor="let book of books">
+      <img class="card-img-top" src="{{book.thumbnailUrl}}" alt="{{book.thumbnailUrl}}">
       <div class="card-body">
         <h5 class="card-title"><strong>{{book.title}}</strong></h5>
-        <p class="card-text" style="font-size: 0.8em;">Rating: <em>{{book.averageRating}}</em></p>
-        <p class="card-text" style="font-size: 0.8em;">Publication date: <em>{{formatDate(book.publishedDate)}}</em></p>
+        <p class="card-text">Rating: <em>{{book.averageRating}}</em></p>
+        <p class="card-text">Publication date: <em>{{formatDate(book.publishedDate)}}</em></p>
       </div>
     </div>
   </div>
