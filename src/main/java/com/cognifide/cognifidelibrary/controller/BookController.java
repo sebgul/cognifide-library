@@ -21,8 +21,14 @@ public class BookController {
     }
 
     @GetMapping("/book")
-    public Iterable<BookRecord> list() {
-        return bookService.list();
+    public ResponseEntity<Iterable<BookRecord>> list() {
+        Iterable<BookRecord> bookRecords = bookService.list();
+
+        if (bookRecords != null) {
+            return new ResponseEntity<>(bookRecords, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/book/{isbn}")

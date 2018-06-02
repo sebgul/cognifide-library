@@ -1,0 +1,21 @@
+<h3>Category selection</h3>
+<div align="center">
+  <select (click)="getBooksByCategory($event)">
+    <p>Categories: {{categories}}</p>
+    <option value="" disabled selected>Please select a category</option>
+    <option *ngFor="let category of categories"
+            [value]="category">
+      {{category}}
+    </option>
+  </select>
+  <div align="center">
+    <div class="card" *ngFor="let book of books">
+      <img class="card-img-top" src="{{book.thumbnailUrl}}" alt="{{book.thumbnailUrl}}">
+      <div class="card-body">
+        <h5 class="card-title"><strong>{{book.title}}</strong></h5>
+        <p class="card-text">Rating: <em>{{book.averageRating}}</em></p>
+        <p class="card-text">Publication date: <em>{{formatDate(book.publishedDate)}}</em></p>
+      </div>
+    </div>
+  </div>
+</div>
